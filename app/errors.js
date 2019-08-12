@@ -7,3 +7,4 @@ const DEFAULT_ERROR = 500,
 
 exports.defaultError = message => createError(message, DEFAULT_ERROR);
 exports.badRequest = message => createError(message, BAD_REQUEST);
+exports.validation = message => createError(message, DEFAULT_ERROR);

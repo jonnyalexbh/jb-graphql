@@ -3,11 +3,12 @@ const { makeExecutableSchema } = require('graphql-tools'),
   inputs = require('./inputs'),
   users = require('./users'),
   albums = require('./albums'),
-  healthCheck = require('./healthCheck');
+  healthCheck = require('./healthCheck'),
+  { applyMiddleware } = require('graphql-middleware');
 
 const typeDefs = [types, inputs, ...users.schemas, ...healthCheck.schemas, ...albums.schemas];
 
-module.exports = makeExecutableSchema({
+const schema = makeExecutableSchema({
   typeDefs,
   resolvers: {
     Query: {
@@ -23,3 +24,11 @@ module.exports = makeExecutableSchema({
     }
   }
 });
+
+const middlewares = {
+  Mutation: {
+    ...users.middlewares
+  }
+};
+
+module.exports = applyMiddleware(schema, middlewares);
