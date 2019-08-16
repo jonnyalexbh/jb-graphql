@@ -17,6 +17,8 @@ exports.encryptPassword = password =>
     })
   );
 
+exports.checkPassword = (password, hashed) => bcrypt.compareSync(password, hashed);
+
 exports.paginate = (data, params) => {
   const { offset, limit } = params;
   return data.slice(offset, offset + limit);

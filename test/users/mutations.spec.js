@@ -1,6 +1,7 @@
 const { mutate } = require('../server.spec'),
   { createUser } = require('./graphql'),
-  userFactory = require('../factories/user');
+  userFactory = require('../factories/user'),
+  { checkPassword } = require('../../app/helpers');
 
 describe('users', () => {
   describe('mutations', () => {
@@ -11,7 +12,7 @@ describe('users', () => {
           expect(firstName).toEqual(user.firstName);
           expect(lastName).toEqual(user.lastName);
           expect(email).toEqual(user.email);
-          expect(password).toEqual(user.password);
+          expect(checkPassword(user.password, password)).toBe(true);
           expect(username).toEqual(user.username);
           expect(id).toBeDefined();
         })
