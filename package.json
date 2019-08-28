@@ -63,6 +63,7 @@
     "express-wolox-logger": "0.0.1",
     "graphql": "^14.2.1",
     "graphql-constraint-directive": "^1.4.0",
+    "graphql-middleware": "^4.0.1",
     "graphql-tools": "^4.0.4",
     "jwt-simple": "^0.5.1",
     "nock": "^10.0.6",

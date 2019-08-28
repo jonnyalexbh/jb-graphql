@@ -1,7 +1,6 @@
 const { allAlbums, albumById, photosByAlbumId } = require('../../services/album'),
   { createPurchase } = require('../../services/purchase'),
-  { changeUserIdByArtist } = require('../../helpers'),
-  error = require('../../errors');
+  { changeUserIdByArtist } = require('../../helpers');
 
 exports.getAlbum = async (_, params) => {
   const album = await albumById(params.id);
@@ -15,9 +14,9 @@ exports.getAlbums = async (_, params) => {
 
 exports.buyAlbum = async (_, params, context) => {
   const { user } = context;
-  if (!user) {
-    throw error.unauthorizedError('unauthorized token');
-  }
+  // if (!user) {
+  //   throw error.unauthorizedError('unauthorized token');
+  // }
   const album = await albumById(params.albumId);
   await createPurchase({ albumId: album.id, userId: user.id });
   return album;
